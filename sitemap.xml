@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://saitora.tech/</loc>
-  </url>
+  <url><loc>https://saitora.tech/</loc></url>
+  <url><loc>https://saitora.tech/privacy.html</loc></url>
+  <url><loc>https://saitora.tech/terms.html</loc></url>
+  <url><loc>https://saitora.tech/demos/automate.html</loc></url>
+  <url><loc>https://saitora.tech/demos/booking-os.html</loc></url>
+  <url><loc>https://saitora.tech/demos/capture.html</loc></url>
+  <url><loc>https://saitora.tech/demos/command.html</loc></url>
+  <url><loc>https://saitora.tech/demos/portal.html</loc></url>
+  <url><loc>https://saitora.tech/demos/signature.html</loc></url>
+  <url><loc>https://saitora.tech/demos/bo-calculator/</loc></url>
+  <url><loc>https://saitora.tech/demos/grave-knight/</loc></url>
+  <url><loc>https://saitora.tech/demos/oblast/</loc></url>
+  <url><loc>https://saitora.tech/demos/snake-luigi/</loc></url>
 </urlset>

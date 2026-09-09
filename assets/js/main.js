@@ -133,8 +133,6 @@
         projects: "Проекти",
         process: "Процес",
         about: "За нас",
-        contact: "Kontakt",
-        contact: "Contact",
         contact: "Контакти",
         cta: "Започни проект"
       },
@@ -401,6 +399,8 @@
       },
       projects: {
         kicker: "Проекти",
+        zoom: "увеличи снимката",
+        zoomTitle: "Увеличена снимка",
         title: "Проекти с ясна функция.",
         view: "Виж проекта",
         demo: "Отвори демото",
@@ -784,7 +784,7 @@
           roadguard: {
             label: "Частна поръчка",
             title: "RoadGuard",
-            description: "Модулна платформа за анализ на пътен трафик, разработена по специализирана поръчка. Кодът и данните са частни, затова тук няма линк и екранни снимки.",
+            description: "Модулна платформа за анализ на пътен трафик, разработена по специализирана поръчка. Кодът и данните са частни, затова тук няма линк към работеща версия.",
             featuresTitle: "Включена функционалност",
             features: ["Модулна структура", "Обработка на видеопоток", "Специализирана поръчка"]
           },
@@ -794,24 +794,6 @@
             description: "Затворена система за преглед и проследяване на активи. Разработена по частна поръчка - кодът и данните не са публични.",
             featuresTitle: "Включена функционалност",
             features: ["Преглед на активи на едно място", "Частен код и частни данни", "Специализирана поръчка"]
-          }
-        },
-        legal: {
-          privacy: {
-            label: "Информационен текст",
-            title: "Политика за поверителност",
-            description:
-              "Това е временен информационен текст за статичен сайт. Контактната форма не изпраща имейл и не записва заявка в база данни. Преди публична употреба съдържанието трябва да бъде съобразено с реалния начин на обработка на лични данни.",
-            featuresTitle: "",
-            features: []
-          },
-          terms: {
-            label: "Информационен текст",
-            title: "Общи условия",
-            description:
-              "Това е временен текст за място на бъдещи условия. Не съдържа правни твърдения, гаранции, цени, срокове или договорни клаузи. Реалните условия трябва да бъдат подготвени според конкретните услуги и процес на работа.",
-            featuresTitle: "",
-            features: []
           }
         }
       }
@@ -837,6 +819,7 @@
         projects: "Projects",
         process: "Process",
         about: "About",
+        contact: "Contact",
         cta: "Start a Project"
       },
       language: {
@@ -1102,6 +1085,8 @@
       },
       projects: {
         kicker: "Projects",
+        zoom: "enlarge the image",
+        zoomTitle: "Enlarged image",
         title: "Projects with a clear function.",
         view: "View project",
         demo: "Open the demo",
@@ -1485,7 +1470,7 @@
           roadguard: {
             label: "Private commission",
             title: "RoadGuard",
-            description: "A modular road-traffic analytics platform built to a specialised brief. The code and data are private, so there is no link or screenshot here.",
+            description: "A modular road-traffic analytics platform built to a specialised brief. The code and data are private, so there is no link to a running version here.",
             featuresTitle: "Included functionality",
             features: ["Modular structure", "Video stream processing", "Specialised brief"]
           },
@@ -1495,24 +1480,6 @@
             description: "A closed system for reviewing and tracking assets. Built as a private commission - neither the code nor the data are public.",
             featuresTitle: "Included functionality",
             features: ["Assets in one view", "Private code and data", "Specialised brief"]
-          }
-        },
-        legal: {
-          privacy: {
-            label: "Information text",
-            title: "Privacy policy",
-            description:
-              "This is temporary information text for a static website. The contact form does not send email and does not store an enquiry in a database. Before public use, the content should reflect the real way personal data is processed.",
-            featuresTitle: "",
-            features: []
-          },
-          terms: {
-            label: "Information text",
-            title: "Terms",
-            description:
-              "This is temporary copy for future terms. It does not contain legal claims, guarantees, prices, timelines, or contract clauses. Real terms should be prepared according to the specific services and work process.",
-            featuresTitle: "",
-            features: []
           }
         }
       }
@@ -1538,6 +1505,7 @@
         projects: "Projekte",
         process: "Prozess",
         about: "Über uns",
+        contact: "Kontakt",
         cta: "Projekt starten"
       },
       language: {
@@ -1804,6 +1772,8 @@
       },
       projects: {
         kicker: "Projekte",
+        zoom: "Bild vergrößern",
+        zoomTitle: "Vergrößertes Bild",
         title: "Projekte mit klarer Funktion.",
         view: "Projekt ansehen",
         demo: "Demo öffnen",
@@ -2189,7 +2159,7 @@
           roadguard: {
             label: "Private Auftragsarbeit",
             title: "RoadGuard",
-            description: "Eine modulare Plattform zur Verkehrsanalyse, entwickelt für einen Spezialauftrag. Code und Daten sind privat, daher gibt es hier weder Link noch Screenshots.",
+            description: "Eine modulare Plattform zur Verkehrsanalyse, entwickelt für einen Spezialauftrag. Code und Daten sind privat, daher gibt es hier keinen Link zu einer laufenden Version.",
             featuresTitle: "Enthaltene Funktionen",
             features: ["Modularer Aufbau", "Verarbeitung von Videoströmen", "Spezialauftrag"]
           },
@@ -2199,24 +2169,6 @@
             description: "Ein geschlossenes System zur Übersicht und Verfolgung von Vermögenswerten. Private Auftragsarbeit - weder Code noch Daten sind öffentlich.",
             featuresTitle: "Enthaltene Funktionen",
             features: ["Vermögenswerte auf einen Blick", "Privater Code und private Daten", "Spezialauftrag"]
-          }
-        },
-        legal: {
-          privacy: {
-            label: "Informationstext",
-            title: "Datenschutzerklärung",
-            description:
-              "Dies ist ein vorläufiger Informationstext für eine statische Website. Das Kontaktformular sendet keine E-Mail und speichert keine Anfrage in einer Datenbank. Vor öffentlicher Nutzung sollte der Inhalt an die tatsächliche Verarbeitung personenbezogener Daten angepasst werden.",
-            featuresTitle: "",
-            features: []
-          },
-          terms: {
-            label: "Informationstext",
-            title: "Bedingungen",
-            description:
-              "Dies ist ein vorläufiger Text für künftige Bedingungen. Er enthält keine rechtlichen Aussagen, Garantien, Preise, Fristen oder Vertragsklauseln. Reale Bedingungen sollten entsprechend den konkreten Leistungen und dem Arbeitsprozess vorbereitet werden.",
-            featuresTitle: "",
-            features: []
           }
         }
       }
@@ -2941,8 +2893,10 @@
     box.setAttribute("aria-hidden", "true");
     box.setAttribute("role", "dialog");
     box.setAttribute("aria-modal", "true");
+    box.setAttribute("aria-label", getValue("projects.zoomTitle") || "Увеличена снимка");
     box.innerHTML =
-      '<button class="shot-lightbox-close" type="button" aria-label="Затвори">&times;</button>' +
+      '<button class="shot-lightbox-close" type="button" aria-label="' +
+      (getValue("modal.close") || "Затвори") + '">&times;</button>' +
       '<img alt=""><p class="shot-lightbox-caption"></p>';
     document.body.appendChild(box);
 
@@ -2979,7 +2933,8 @@
       shot.setAttribute("role", "button");
       const label = shot.querySelector("img");
       shot.setAttribute("aria-label",
-        (label && label.alt ? label.alt + " - " : "") + "увеличи снимката");
+        (label && label.alt ? label.alt + " - " : "") +
+        (getValue("projects.zoom") || "увеличи снимката"));
       shot.addEventListener("click", () => open(shot));
       shot.addEventListener("keydown", (event) => {
         if (event.key === "Enter" || event.key === " ") {
