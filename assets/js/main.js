@@ -64,6 +64,9 @@
   };
 
   const projectLinks = {
+    "wealthmatrix": {
+      "live": "https://wealth-matrix-luigi.web.app"
+    },
     "graveknight": {
       "demo": "demos/grave-knight/"
     },
