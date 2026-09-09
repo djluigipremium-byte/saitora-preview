@@ -327,7 +327,7 @@ PAGE = """<!doctype html><html lang="bg"><head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title} · SAITORA</title>
 <meta name="description" content="{desc}">
-<link rel="canonical" href="https://saitora.tech/{slug}.html">
+<link rel="canonical" href="https://nedelchevweb.com/{slug}.html">
 <meta name="theme-color" content="#11100e">
 <link rel="stylesheet" href="assets/css/style.css">
 <style>{css}</style>

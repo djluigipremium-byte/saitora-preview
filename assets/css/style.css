@@ -86,8 +86,10 @@ button {
 }
 
 :focus-visible {
-  outline: 2px solid var(--copper-soft);
-  outline-offset: 4px;
+  /* #8a5a2b: 5.14:1 върху светлите секции, 3.24:1 върху тъмните - минава и на двата фона */
+  outline: 3px solid #8a5a2b;
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 .skip-link {
