@@ -4340,3 +4340,22 @@ h1 {
 .modal-links a{color:var(--copper-soft);text-decoration:none;font-weight:600;
   border-bottom:1px solid rgba(216,182,140,.4);padding-bottom:2px}
 .modal-links a:hover{color:var(--ivory);border-bottom-color:var(--ivory)}
+
+/* ── увеличаване на екранните снимки ── */
+.project-shot{cursor:zoom-in}
+.project-shot:focus-visible{outline:2px solid var(--copper);outline-offset:3px}
+.shot-lightbox{position:fixed;inset:0;z-index:9000;display:none;
+  align-items:center;justify-content:center;padding:clamp(16px,4vw,56px);
+  background:rgba(9,8,7,.94);backdrop-filter:blur(6px)}
+.shot-lightbox.is-open{display:flex}
+.shot-lightbox img{max-width:100%;max-height:100%;object-fit:contain;
+  border-radius:10px;border:1px solid var(--line-dark);box-shadow:var(--shadow)}
+.shot-lightbox-close{position:absolute;top:clamp(12px,3vw,26px);right:clamp(12px,3vw,26px);
+  width:44px;height:44px;border-radius:50%;cursor:pointer;
+  background:rgba(244,239,228,.1);border:1px solid var(--line-dark);color:var(--ivory);
+  font-size:22px;line-height:1;display:flex;align-items:center;justify-content:center}
+.shot-lightbox-close:hover{background:rgba(244,239,228,.2)}
+.shot-lightbox-caption{position:absolute;left:0;right:0;bottom:clamp(10px,3vw,24px);
+  text-align:center;color:var(--muted);font-size:13px;padding:0 20px}
+body.shot-open{overflow:hidden}
+@media (prefers-reduced-motion: reduce){.shot-lightbox{backdrop-filter:none}}

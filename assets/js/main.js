@@ -2839,6 +2839,72 @@
     }
   }
 
+  function initShotLightbox() {
+    const shots = Array.from(document.querySelectorAll(".project-shot"));
+    if (!shots.length) return;
+
+    const box = document.createElement("div");
+    box.className = "shot-lightbox";
+    box.setAttribute("aria-hidden", "true");
+    box.setAttribute("role", "dialog");
+    box.setAttribute("aria-modal", "true");
+    box.innerHTML =
+      '<button class="shot-lightbox-close" type="button" aria-label="Затвори">&times;</button>' +
+      '<img alt=""><p class="shot-lightbox-caption"></p>';
+    document.body.appendChild(box);
+
+    const img = box.querySelector("img");
+    const caption = box.querySelector(".shot-lightbox-caption");
+    const closeBtn = box.querySelector(".shot-lightbox-close");
+    let opener = null;
+
+    function open(source) {
+      const full = source.querySelector("img");
+      if (!full) return;
+      opener = source;
+      img.src = full.currentSrc || full.src;
+      img.alt = full.alt || "";
+      caption.textContent = full.alt || "";
+      box.classList.add("is-open");
+      box.setAttribute("aria-hidden", "false");
+      document.body.classList.add("shot-open");
+      closeBtn.focus();
+    }
+
+    function close() {
+      if (!box.classList.contains("is-open")) return;
+      box.classList.remove("is-open");
+      box.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("shot-open");
+      img.removeAttribute("src");
+      if (opener && typeof opener.focus === "function") opener.focus();
+      opener = null;
+    }
+
+    shots.forEach((shot) => {
+      shot.setAttribute("tabindex", "0");
+      shot.setAttribute("role", "button");
+      const label = shot.querySelector("img");
+      shot.setAttribute("aria-label",
+        (label && label.alt ? label.alt + " - " : "") + "увеличи снимката");
+      shot.addEventListener("click", () => open(shot));
+      shot.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          open(shot);
+        }
+      });
+    });
+
+    closeBtn.addEventListener("click", close);
+    box.addEventListener("click", (event) => {
+      if (event.target === box || event.target === img) close();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") close();
+    });
+  }
+
   function initReveals() {
     const revealItems = document.querySelectorAll(".reveal-section, .reveal-item");
     let revealFrame = null;
@@ -3074,6 +3140,7 @@
   setHeaderState();
   applyTranslations(currentLanguage);
   initSolutionSwitcher();
+  initShotLightbox();
   initReveals();
   initActiveNavigation();
   initProjectIntakeFromUrl();
