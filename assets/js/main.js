@@ -120,6 +120,9 @@
         projects: "Проекти",
         process: "Процес",
         about: "За нас",
+        contact: "Kontakt",
+        contact: "Contact",
+        contact: "Контакти",
         cta: "Започни проект"
       },
       language: {
