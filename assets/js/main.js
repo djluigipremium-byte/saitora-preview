@@ -92,6 +92,7 @@
   };
 
   const projectShots = {
+    "partizalamanager": "assets/images/projects/partizala-manager.png",
     "graveknight": "assets/images/projects/grave-knight.png",
     "snakeluigi": "assets/images/projects/snake-luigi.png",
     "partizala": "assets/images/projects/partizala.png",
@@ -246,7 +247,8 @@
               mobile: "Мобилна версия",
               languages: "Многоезичност",
               enquiries: "Структура за запитвания",
-              seo: "Основна SEO основа"
+              seo: "Основна SEO основа",
+              apps: "Приложения за iOS и Android"
             }
           },
           capture: {
@@ -422,6 +424,12 @@
             title: "Partizala",
             type: "Сайт и заявки за парти зала",
             copy: "Сайт на парти зала в София с галерия на пространството, подробности за наема и заявка за свободна дата."
+          },
+          partizalamanager: {
+            label: "Реален проект",
+            title: "Partizala Manager",
+            type: "iOS приложение за управление на залата",
+            copy: "Нативно iOS приложение за екипа на парти залата - завеждане на приходи и разходи, бележки и защитен вход само за администратори."
           },
           mikicharli: {
             label: "Реален проект",
@@ -738,6 +746,13 @@
             featuresTitle: "Включена функционалност",
             features: ["Галерия на залата, бара и фоайето", "Проверка на свободна дата", "Подробности за наема и включеното", "Форма за запитване"]
           },
+          partizalamanager: {
+            label: "Реален проект",
+            title: "Partizala Manager",
+            description: "Нативно приложение за iPhone, писано на SwiftUI, чрез което екипът на парти залата води приходите и разходите на място, вместо на хартия. Достъпът е защитен и е само за администратори.",
+            featuresTitle: "Включена функционалност",
+            features: ["Нативно iOS приложение на SwiftUI", "Завеждане на приходи и разходи", "Отбелязване кой е въвел записа", "Бележки към събитията", "Защитен вход само за администратори"]
+          },
           mikicharli: {
             label: "Реален проект",
             title: "Мики и Чарли",
@@ -933,7 +948,8 @@
               mobile: "Mobile version",
               languages: "Multilingual setup",
               enquiries: "Enquiry structure",
-              seo: "Core SEO foundation"
+              seo: "Core SEO foundation",
+              apps: "iOS and Android apps"
             }
           },
           capture: {
@@ -1109,6 +1125,12 @@
             title: "Partizala",
             type: "Website and enquiries for a party venue",
             copy: "Website for a party venue in Sofia with a gallery of the space, rental details and a date-availability enquiry."
+          },
+          partizalamanager: {
+            label: "Real project",
+            title: "Partizala Manager",
+            type: "iOS app for venue management",
+            copy: "A native iOS app for the party venue team - logging income and expenses, notes, and a protected admin-only sign-in."
           },
           mikicharli: {
             label: "Real project",
@@ -1425,6 +1447,13 @@
             featuresTitle: "Included functionality",
             features: ["Gallery of the hall, bar and foyer", "Date availability check", "Rental details and inclusions", "Enquiry form"]
           },
+          partizalamanager: {
+            label: "Real project",
+            title: "Partizala Manager",
+            description: "A native iPhone app written in SwiftUI that lets the venue team record income and expenses on the spot instead of on paper. Access is protected and limited to administrators.",
+            featuresTitle: "Included functionality",
+            features: ["Native iOS app in SwiftUI", "Income and expense logging", "Records who entered each item", "Notes on events", "Protected admin-only sign-in"]
+          },
           mikicharli: {
             label: "Real project",
             title: "Мики и Чарли",
@@ -1621,7 +1650,8 @@
               mobile: "Mobile Version",
               languages: "Mehrsprachigkeit",
               enquiries: "Struktur für Anfragen",
-              seo: "Solide SEO-Grundlage"
+              seo: "Solide SEO-Grundlage",
+              apps: "Apps für iOS und Android"
             }
           },
           capture: {
@@ -1797,6 +1827,12 @@
             title: "Partizala",
             type: "Website und Anfragen für einen Partyraum",
             copy: "Website für einen Partyraum in Sofia mit Galerie, Mietdetails und Anfrage zur Terminverfügbarkeit."
+          },
+          partizalamanager: {
+            label: "Reales Projekt",
+            title: "Partizala Manager",
+            type: "iOS-App zur Verwaltung",
+            copy: "Eine native iOS-App für das Team des Partyraums - Erfassung von Einnahmen und Ausgaben, Notizen und geschützter Zugang nur für Administratoren."
           },
           mikicharli: {
             label: "Reales Projekt",
@@ -2114,6 +2150,13 @@
             description: "Website für einen Partyraum zur Miete in Sofia. Sie zeigt den Raum, was die Miete umfasst, und nimmt Terminanfragen entgegen.",
             featuresTitle: "Enthaltene Funktionen",
             features: ["Galerie von Saal, Bar und Foyer", "Prüfung freier Termine", "Mietdetails und Leistungen", "Anfrageformular"]
+          },
+          partizalamanager: {
+            label: "Reales Projekt",
+            title: "Partizala Manager",
+            description: "Eine native iPhone-App in SwiftUI, mit der das Team Einnahmen und Ausgaben direkt vor Ort erfasst statt auf Papier. Der Zugang ist geschützt und Administratoren vorbehalten.",
+            featuresTitle: "Enthaltene Funktionen",
+            features: ["Native iOS-App mit SwiftUI", "Erfassung von Einnahmen und Ausgaben", "Vermerkt, wer den Eintrag erstellt hat", "Notizen zu Veranstaltungen", "Geschützter Zugang nur für Administratoren"]
           },
           mikicharli: {
             label: "Reales Projekt",
