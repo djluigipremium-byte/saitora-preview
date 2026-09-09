@@ -91,6 +91,18 @@
     }
   };
 
+  const projectShots = {
+    "graveknight": "assets/images/projects/grave-knight.png",
+    "snakeluigi": "assets/images/projects/snake-luigi.png",
+    "partizala": "assets/images/projects/partizala.png",
+    "mikicharli": "assets/images/projects/mikicharli.png",
+    "bocalculator": "assets/images/projects/bo-calculator.png",
+    "him": "assets/images/projects/hivem.png",
+    "oblast": "assets/images/projects/oblast.png",
+    "roadguard": "assets/images/projects/roadguard.png",
+    "wealthmatrix": "assets/images/projects/wealth-matrix.png"
+  };
+
   const projectVisuals = {
     him: `<svg viewBox="0 0 760 460" focusable="false"><rect x="250" y="120" width="260" height="220" rx="14"></rect><path d="M330 200v-26a50 50 0 0 1 100 0v26"></path><rect x="352" y="236" width="56" height="44" rx="8"></rect><path d="M120 90h90M120 130h60M550 330h90M600 370h40"></path></svg>`,
     oblast: `<svg viewBox="0 0 760 460" focusable="false"><rect x="70" y="70" width="240" height="320" rx="8"></rect><path d="M104 120h172M104 156h140M104 192h172M104 228h96"></path><path d="M340 230h80"></path><rect x="450" y="120" width="240" height="90" rx="8"></rect><path d="M482 152h120M482 180h72"></path><rect x="450" y="260" width="240" height="130" rx="8"></rect><path d="M482 300h176M482 336h96M482 364h140"></path></svg>`,
@@ -706,67 +718,67 @@
         close: "Затвори прозореца",
         projects: {
           graveknight: {
-            label: "Auftragsarbeit",
+            label: "Поръчкова разработка",
             title: "Grave Knight",
-            description: "Ein Actionspiel, entwickelt als Teil einer Werbekampagne. Es läuft vollständig im Browser - ohne Installation, ohne Plugins, ohne Anmeldung.",
-            featuresTitle: "Enthaltene Funktionen",
-            features: ["Läuft vollständig im Browser", "Levels und Bosskämpfe", "Ton, Pause und Vollbild", "Hier direkt spielbar"]
+            description: "Екшън игра, разработена по поръчка като част от рекламна кампания. Играе се изцяло в браузъра - без инсталация, без плъгини и без регистрация.",
+            featuresTitle: "Включена функционалност",
+            features: ["Игра изцяло в браузъра", "Нива и битки с босове", "Звук, пауза и режим на цял екран", "Може да се пробва тук на място"]
           },
           snakeluigi: {
-            label: "Auftragsarbeit",
+            label: "Поръчкова разработка",
             title: "Snake Luigi",
-            description: "Ein Spiel als Website-Erweiterung, damit Besucher länger bleiben. Drei Steuerungsarten und eine Bestenliste.",
-            featuresTitle: "Enthaltene Funktionen",
-            features: ["Tastatur, Bildschirmtasten und Wischen", "Bestenliste", "Funktioniert auf Handy und Desktop", "Hier direkt spielbar"]
+            description: "Игра, поръчана като добавка към сайт, за да задържа посетителя по-дълго. Управлява се по три начина и пази класация с най-добрите резултати.",
+            featuresTitle: "Включена функционалност",
+            features: ["Управление с клавиатура, екранни бутони и плъзгане", "Класация с най-добри резултати", "Работи на телефон и на компютър", "Може да се пробва тук на място"]
           },
           partizala: {
-            label: "Reales Projekt",
+            label: "Реален проект",
             title: "Partizala",
-            description: "Website für einen Partyraum zur Miete in Sofia. Sie zeigt den Raum, was die Miete umfasst, und nimmt Terminanfragen entgegen.",
-            featuresTitle: "Enthaltene Funktionen",
-            features: ["Galerie von Saal, Bar und Foyer", "Prüfung freier Termine", "Mietdetails und Leistungen", "Anfrageformular"]
+            description: "Сайт на парти зала под наем в София. Представя пространството, какво влиза в наема и приема заявки за свободна дата.",
+            featuresTitle: "Включена функционалност",
+            features: ["Галерия на залата, бара и фоайето", "Проверка на свободна дата", "Подробности за наема и включеното", "Форма за запитване"]
           },
           mikicharli: {
-            label: "Reales Projekt",
+            label: "Реален проект",
             title: "Мики и Чарли",
-            description: "Website für zwei Kinderanimateure. Sie stellt das Programm Nummer für Nummer vor und nimmt Anfragen entgegen.",
-            featuresTitle: "Enthaltene Funktionen",
-            features: ["Programmvorstellung", "Galerie", "Anfrageformular", "Für die lokale Suche optimiert"]
+            description: "Сайт на двама аниматори за детски празници. Представя програмата им номер по номер и приема запитвания за събитие.",
+            featuresTitle: "Включена функционалност",
+            features: ["Представяне на програмата", "Галерия", "Запитване за събитие", "Оптимизиран за търсене в София"]
           },
           bocalculator: {
-            label: "Auftragsarbeit",
+            label: "Поръчкова разработка",
             title: "Beneficial Ownership Calculator",
-            description: "Ein Werkzeug, das die effektive wirtschaftliche Berechtigung über mehrstufige Beteiligungsstrukturen berechnet, wenn Gesellschaften Anteile aneinander halten.",
-            featuresTitle: "Enthaltene Funktionen",
-            features: ["Mehrstufige Eigentümerstrukturen", "Effektiver Anteil über alle Ebenen", "Läuft vollständig im Browser", "Hier direkt testbar"]
+            description: "Инструмент, изготвен по поръчка, който изчислява действителното процентно участие при многослойни акционерни структури - когато дружества държат дялове едно в друго.",
+            featuresTitle: "Включена функционалност",
+            features: ["Многослойни структури от собственици", "Изчисление на процентното участие през нивата", "Работи изцяло в браузъра", "Може да се пробва тук на място"]
           },
           him: {
-            label: "Private Auftragsarbeit",
+            label: "Частна поръчка",
             title: "HIM — Mission Control",
-            description: "Eine geschlossene Arbeitsumgebung mit eigener Identität und Firebase-Anmeldung. Die Inhalte sind nur für freigegebene Konten zugänglich, daher wird hier nur die Anmeldung gezeigt.",
-            featuresTitle: "Enthaltene Funktionen",
-            features: ["Firebase-Anmeldung", "Identität getrennt vom privaten Konto", "Nur freigegebene Konten"]
+            description: "Затворена работна среда с отделна самоличност и вход през Firebase. Съдържанието е достъпно само за одобрени профили, затова тук е показан само входът.",
+            featuresTitle: "Включена функционалност",
+            features: ["Вход през Firebase", "Отделна самоличност от личния профил", "Достъп само за одобрени профили"]
           },
           oblast: {
-            label: "Private Auftragsarbeit",
+            label: "Частна поръчка",
             title: "Област · Демо",
-            description: "Ein Projekt zur Digitalisierung kommunaler Akten. Es beantwortet, wie viele Personen überfällige Forderungen haben und in welcher Höhe - als Summe geprüfter Zeilen, nicht als Satz eines Modells. Die Abfrage steht neben der Zahl. Die Demo läuft auf vollständig erfundenen Daten.",
-            featuresTitle: "Enthaltene Funktionen",
-            features: ["Extraktion aus gescannten Seiten", "Jede Zahl aus geprüfter SQL-Abfrage", "Abfrage neben dem Ergebnis sichtbar", "Demo mit synthetischen Daten"]
+            description: "Проект за дигитализация на общински документи. Отговаря на въпроса колко души имат просрочени задължения и на каква стойност - като сума на колона от проверени редове, не като изречение от модел. Заявката е показана до самото число. Демонстрацията работи върху изцяло измислени данни.",
+            featuresTitle: "Включена функционалност",
+            features: ["Извличане на данни от сканирани страници", "Всяко число идва от проверена SQL заявка", "Заявката се показва до резултата", "Демонстрация върху синтетични данни"]
           },
           roadguard: {
-            label: "Private Auftragsarbeit",
+            label: "Частна поръчка",
             title: "RoadGuard",
-            description: "Eine modulare Plattform zur Verkehrsanalyse, entwickelt für einen Spezialauftrag. Code und Daten sind privat, daher gibt es hier weder Link noch Screenshots.",
-            featuresTitle: "Enthaltene Funktionen",
-            features: ["Modularer Aufbau", "Verarbeitung von Videoströmen", "Spezialauftrag"]
+            description: "Модулна платформа за анализ на пътен трафик, разработена по специализирана поръчка. Кодът и данните са частни, затова тук няма линк и екранни снимки.",
+            featuresTitle: "Включена функционалност",
+            features: ["Модулна структура", "Обработка на видеопоток", "Специализирана поръчка"]
           },
           wealthmatrix: {
-            label: "Private Auftragsarbeit",
+            label: "Частна поръчка",
             title: "Wealth Matrix",
-            description: "Ein geschlossenes System zur Übersicht und Verfolgung von Vermögenswerten. Private Auftragsarbeit - weder Code noch Daten sind öffentlich.",
-            featuresTitle: "Enthaltene Funktionen",
-            features: ["Vermögenswerte auf einen Blick", "Privater Code und private Daten", "Spezialauftrag"]
+            description: "Затворена система за преглед и проследяване на активи. Разработена по частна поръчка - кодът и данните не са публични.",
+            featuresTitle: "Включена функционалност",
+            features: ["Преглед на активи на едно място", "Частен код и частни данни", "Специализирана поръчка"]
           }
         },
         legal: {
@@ -1392,50 +1404,68 @@
       modal: {
         close: "Close window",
         projects: {
+          graveknight: {
+            label: "Commissioned work",
+            title: "Grave Knight",
+            description: "An action game built to order as part of an advertising campaign. It runs entirely in the browser - no install, no plugins, no sign-up.",
+            featuresTitle: "Included functionality",
+            features: ["Runs entirely in the browser", "Levels and boss fights", "Sound, pause and fullscreen", "Playable right here"]
+          },
+          snakeluigi: {
+            label: "Commissioned work",
+            title: "Snake Luigi",
+            description: "A game commissioned as a website add-on to keep visitors around longer. Three control schemes and a high-score board.",
+            featuresTitle: "Included functionality",
+            features: ["Keyboard, on-screen buttons and swipe", "High-score board", "Works on phone and desktop", "Playable right here"]
+          },
           partizala: {
             label: "Real project",
             title: "Partizala",
-            description:
-              "A digital solution for a party venue with public information, booking and viewing enquiries, a calendar with occupied periods, and a more organised process for managing requests.",
+            description: "Website for a party venue for hire in Sofia. It presents the space, what the rental includes, and takes date-availability enquiries.",
             featuresTitle: "Included functionality",
-            features: [
-              "Premium presentation of the service",
-              "Booking form",
-              "Viewing enquiry form",
-              "Calendar with occupied periods",
-              "Clear incoming-enquiry process",
-              "Mobile-first structure"
-            ]
+            features: ["Gallery of the hall, bar and foyer", "Date availability check", "Rental details and inclusions", "Enquiry form"]
           },
-          professional: {
-            label: "Concept project",
-            title: "Professional services",
-            description:
-              "A concept for a company that needs to explain expertise, services, and process without unnecessary noise. The focus is trust, clear enquiries, and practical structure.",
-            featuresTitle: "Possible components",
-            features: [
-              "Business presentation",
-              "Structured services",
-              "Qualified enquiry form",
-              "Process and approach section",
-              "SEO foundation for services",
-              "Clear direction for future growth"
-            ]
+          mikicharli: {
+            label: "Real project",
+            title: "Мики и Чарли",
+            description: "Website for two children's entertainers. It presents their programme act by act and takes event enquiries.",
+            featuresTitle: "Included functionality",
+            features: ["Programme presentation", "Gallery", "Event enquiry form", "Optimised for local search"]
           },
-          hospitality: {
-            label: "Concept project",
-            title: "Hospitality and bookings",
-            description:
-              "A concept for a restaurant, hotel, or venue that needs presentation, event enquiries, bookings, and clearer availability management.",
-            featuresTitle: "Possible components",
-            features: [
-              "Presentation of space or service",
-              "Reservation and event forms",
-              "Availability or calendar",
-              "Contact and location",
-              "Menu or package offers",
-              "Organised mobile experience"
-            ]
+          bocalculator: {
+            label: "Commissioned work",
+            title: "Beneficial Ownership Calculator",
+            description: "A tool built to order that calculates effective beneficial ownership across multi-level shareholder structures, where companies hold stakes in one another.",
+            featuresTitle: "Included functionality",
+            features: ["Multi-level ownership structures", "Effective percentage across layers", "Runs entirely in the browser", "Try it right here"]
+          },
+          him: {
+            label: "Private commission",
+            title: "HIM — Mission Control",
+            description: "A closed working environment with a separate identity and Firebase sign-in. Its contents are only available to approved accounts, so only the sign-in screen is shown here.",
+            featuresTitle: "Included functionality",
+            features: ["Firebase sign-in", "Identity separate from the personal account", "Approved accounts only"]
+          },
+          oblast: {
+            label: "Private commission",
+            title: "Област · Демо",
+            description: "A project for digitising municipal records. It answers how many people have overdue obligations and for what total - as a sum over verified rows, not a sentence from a model. The query is shown next to the figure. The demo runs on entirely fictional data.",
+            featuresTitle: "Included functionality",
+            features: ["Extraction from scanned pages", "Every figure from a verified SQL query", "Query shown beside the result", "Demo on synthetic data"]
+          },
+          roadguard: {
+            label: "Private commission",
+            title: "RoadGuard",
+            description: "A modular road-traffic analytics platform built to a specialised brief. The code and data are private, so there is no link or screenshot here.",
+            featuresTitle: "Included functionality",
+            features: ["Modular structure", "Video stream processing", "Specialised brief"]
+          },
+          wealthmatrix: {
+            label: "Private commission",
+            title: "Wealth Matrix",
+            description: "A closed system for reviewing and tracking assets. Built as a private commission - neither the code nor the data are public.",
+            featuresTitle: "Included functionality",
+            features: ["Assets in one view", "Private code and data", "Specialised brief"]
           }
         },
         legal: {
@@ -2064,50 +2094,68 @@
       modal: {
         close: "Fenster schließen",
         projects: {
+          graveknight: {
+            label: "Auftragsarbeit",
+            title: "Grave Knight",
+            description: "Ein Actionspiel, entwickelt als Teil einer Werbekampagne. Es läuft vollständig im Browser - ohne Installation, ohne Plugins, ohne Anmeldung.",
+            featuresTitle: "Enthaltene Funktionen",
+            features: ["Läuft vollständig im Browser", "Levels und Bosskämpfe", "Ton, Pause und Vollbild", "Hier direkt spielbar"]
+          },
+          snakeluigi: {
+            label: "Auftragsarbeit",
+            title: "Snake Luigi",
+            description: "Ein Spiel als Website-Erweiterung, damit Besucher länger bleiben. Drei Steuerungsarten und eine Bestenliste.",
+            featuresTitle: "Enthaltene Funktionen",
+            features: ["Tastatur, Bildschirmtasten und Wischen", "Bestenliste", "Funktioniert auf Handy und Desktop", "Hier direkt spielbar"]
+          },
           partizala: {
             label: "Reales Projekt",
             title: "Partizala",
-            description:
-              "Eine digitale Lösung für einen Partyraum mit öffentlichen Informationen, Buchungs- und Besichtigungsanfragen, Kalender mit belegten Zeiträumen und einem geordneteren Prozess zur Verwaltung von Anfragen.",
-            featuresTitle: "Enthaltene Funktionalität",
-            features: [
-              "Hochwertige Präsentation der Leistung",
-              "Buchungsformular",
-              "Formular für Besichtigungsanfragen",
-              "Kalender mit belegten Zeiträumen",
-              "Klarer Prozess für eingehende Anfragen",
-              "Mobile-first-Struktur"
-            ]
+            description: "Website für einen Partyraum zur Miete in Sofia. Sie zeigt den Raum, was die Miete umfasst, und nimmt Terminanfragen entgegen.",
+            featuresTitle: "Enthaltene Funktionen",
+            features: ["Galerie von Saal, Bar und Foyer", "Prüfung freier Termine", "Mietdetails und Leistungen", "Anfrageformular"]
           },
-          professional: {
-            label: "Konzeptprojekt",
-            title: "Professionelle Dienstleistungen",
-            description:
-              "Ein Konzept für ein Unternehmen, das Expertise, Leistungen und Prozess ohne unnötigen Lärm erklären muss. Der Fokus liegt auf Vertrauen, klaren Anfragen und praktischer Struktur.",
-            featuresTitle: "Mögliche Komponenten",
-            features: [
-              "Unternehmenspräsentation",
-              "Strukturierte Leistungen",
-              "Formular für qualifizierte Anfragen",
-              "Sektion für Prozess und Ansatz",
-              "SEO-Grundlage für Leistungen",
-              "Klare Richtung für künftige Entwicklung"
-            ]
+          mikicharli: {
+            label: "Reales Projekt",
+            title: "Мики и Чарли",
+            description: "Website für zwei Kinderanimateure. Sie stellt das Programm Nummer für Nummer vor und nimmt Anfragen entgegen.",
+            featuresTitle: "Enthaltene Funktionen",
+            features: ["Programmvorstellung", "Galerie", "Anfrageformular", "Für die lokale Suche optimiert"]
           },
-          hospitality: {
-            label: "Konzeptprojekt",
-            title: "Gastgewerbe und Buchungen",
-            description:
-              "Ein Konzept für ein Restaurant, Hotel oder eine Location, die Präsentation, Eventanfragen, Buchungen und klareres Verfügbarkeitsmanagement benötigt.",
-            featuresTitle: "Mögliche Komponenten",
-            features: [
-              "Präsentation von Raum oder Leistung",
-              "Formulare für Reservierungen und Events",
-              "Verfügbarkeit oder Kalender",
-              "Kontakt und Standort",
-              "Menü oder Paketangebote",
-              "Geordnetes mobiles Erlebnis"
-            ]
+          bocalculator: {
+            label: "Auftragsarbeit",
+            title: "Beneficial Ownership Calculator",
+            description: "Ein Werkzeug, das die effektive wirtschaftliche Berechtigung über mehrstufige Beteiligungsstrukturen berechnet, wenn Gesellschaften Anteile aneinander halten.",
+            featuresTitle: "Enthaltene Funktionen",
+            features: ["Mehrstufige Eigentümerstrukturen", "Effektiver Anteil über alle Ebenen", "Läuft vollständig im Browser", "Hier direkt testbar"]
+          },
+          him: {
+            label: "Private Auftragsarbeit",
+            title: "HIM — Mission Control",
+            description: "Eine geschlossene Arbeitsumgebung mit eigener Identität und Firebase-Anmeldung. Die Inhalte sind nur für freigegebene Konten zugänglich, daher wird hier nur die Anmeldung gezeigt.",
+            featuresTitle: "Enthaltene Funktionen",
+            features: ["Firebase-Anmeldung", "Identität getrennt vom privaten Konto", "Nur freigegebene Konten"]
+          },
+          oblast: {
+            label: "Private Auftragsarbeit",
+            title: "Област · Демо",
+            description: "Ein Projekt zur Digitalisierung kommunaler Akten. Es beantwortet, wie viele Personen überfällige Forderungen haben und in welcher Höhe - als Summe geprüfter Zeilen, nicht als Satz eines Modells. Die Abfrage steht neben der Zahl. Die Demo läuft auf vollständig erfundenen Daten.",
+            featuresTitle: "Enthaltene Funktionen",
+            features: ["Extraktion aus gescannten Seiten", "Jede Zahl aus geprüfter SQL-Abfrage", "Abfrage neben dem Ergebnis sichtbar", "Demo mit synthetischen Daten"]
+          },
+          roadguard: {
+            label: "Private Auftragsarbeit",
+            title: "RoadGuard",
+            description: "Eine modulare Plattform zur Verkehrsanalyse, entwickelt für einen Spezialauftrag. Code und Daten sind privat, daher gibt es hier weder Link noch Screenshots.",
+            featuresTitle: "Enthaltene Funktionen",
+            features: ["Modularer Aufbau", "Verarbeitung von Videoströmen", "Spezialauftrag"]
+          },
+          wealthmatrix: {
+            label: "Private Auftragsarbeit",
+            title: "Wealth Matrix",
+            description: "Ein geschlossenes System zur Übersicht und Verfolgung von Vermögenswerten. Private Auftragsarbeit - weder Code noch Daten sind öffentlich.",
+            featuresTitle: "Enthaltene Funktionen",
+            features: ["Vermögenswerte auf einen Blick", "Privater Code und private Daten", "Spezialauftrag"]
           }
         },
         legal: {
@@ -2727,7 +2775,9 @@
       const content = getValue(`modal.projects.${key}`);
       return content
         ? Object.assign({}, content, {
-            visual: projectVisuals[key] || "",
+            visual: projectShots[key]
+              ? `<img src="${projectShots[key]}" alt="" loading="lazy">`
+              : projectVisuals[key] || "",
             links: projectLinks[key] || null
           })
         : null;

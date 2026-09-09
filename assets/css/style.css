@@ -4359,3 +4359,7 @@ h1 {
   text-align:center;color:var(--muted);font-size:13px;padding:0 20px}
 body.shot-open{overflow:hidden}
 @media (prefers-reduced-motion: reduce){.shot-lightbox{backdrop-filter:none}}
+
+/* снимка вместо схема в прозореца на проекта */
+[data-modal-visual] img{width:100%;height:auto;display:block;border-radius:8px;
+  border:1px solid var(--line-dark);cursor:zoom-in}
