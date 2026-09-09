@@ -83,8 +83,7 @@
       "live": "https://mikicharli.com"
     },
     "bocalculator": {
-      "demo": "demos/bo-calculator/",
-      "live": "https://djluigipremium-byte.github.io/bo-calculator/"
+      "demo": "demos/bo-calculator/"
     },
     "him": {
       "live": "https://hivem.app"
