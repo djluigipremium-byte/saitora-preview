@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beneficial Ownership Calculator</title>
+<style>
+  :root {
+    --bg: #f4f6f8; --card: #ffffff; --ink: #1a2733; --muted: #5b6b7a;
+    --accent: #0e7490; --accent-soft: #e0f2f7; --line: #d8e0e7;
+    --ok: #15803d; --ok-soft: #dcfce7; --no: #64748b; --no-soft: #eef2f6;
+    --warn: #b45309; --warn-soft: #fef3c7; --danger: #b91c1c;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif; background: var(--bg); color: var(--ink); font-size: 15px; line-height: 1.45; }
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 24px 20px 60px; display: flex; flex-direction: column; }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  .sub { color: var(--muted); margin: 0 0 20px; font-size: 14px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; margin-bottom: 18px; }
+  .card h2 { font-size: 15px; margin: 0 0 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--accent); }
+  label { font-size: 13px; color: var(--muted); display: block; margin-bottom: 4px; }
+  input[type=text], input[type=number] {
+    font: inherit; padding: 7px 10px; border: 1px solid var(--line); border-radius: 7px; background: #fff; color: var(--ink); width: 100%;
+  }
+  input:focus { outline: 2px solid var(--accent-soft); border-color: var(--accent); }
+  .rootrow { display: flex; gap: 14px; align-items: flex-end; flex-wrap: wrap; margin-bottom: 14px; }
+  .rootrow .grow { flex: 1 1 260px; }
+  .edges-head, .edge { display: grid; grid-template-columns: 1fr 110px 1fr 40px; gap: 10px; align-items: center; }
+  .edges-head { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .03em; margin-bottom: 6px; }
+  .edge { margin-bottom: 8px; }
+  .edge .conn { font-size: 12px; color: var(--muted); text-align: center; }
+  button { font: inherit; cursor: pointer; border-radius: 7px; border: 1px solid var(--line); background: #fff; color: var(--ink); padding: 7px 14px; }
+  button:hover { border-color: var(--accent); color: var(--accent); }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  button.primary:hover { filter: brightness(1.08); color: #fff; }
+  button.ghost { border: none; background: none; color: var(--danger); font-size: 17px; padding: 4px 8px; }
+  .toolbar { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+  .thres { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; }
+  .thres label.radio { display: flex; align-items: center; gap: 7px; margin: 0; font-size: 14px; color: var(--ink); cursor: pointer; }
+  .thres input[type=number] { width: 90px; }
+  table { border-collapse: collapse; width: 100%; }
+  th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); border-bottom: 2px solid var(--line); }
+  td.num, th.num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 12.5px; font-weight: 600; white-space: nowrap; }
+  .badge.bo { background: var(--ok-soft); color: var(--ok); }
+  .badge.nbo { background: var(--no-soft); color: var(--no); }
+  .badge.edge-case { background: var(--warn-soft); color: var(--warn); }
+  .paths { font-size: 13px; color: var(--muted); }
+  .paths div { margin-bottom: 3px; }
+  .total { font-size: 17px; font-weight: 700; }
+  .copybtn { font-size: 12px; padding: 4px 9px; margin-top: 6px; }
+  .note { font-size: 13px; color: var(--muted); }
+  .warnbox { background: var(--warn-soft); color: var(--warn); border-radius: 8px; padding: 10px 14px; margin-bottom: 10px; font-size: 14px; }
+  /* ---- org chart diagram ---- */
+  .orgwrap { overflow-x: auto; padding-bottom: 6px; }
+  .org { background: #343b4e; border-radius: 10px; padding: 26px 20px 30px; display: inline-block; min-width: 100%; }
+  .org ul { display: flex; justify-content: center; align-items: flex-start; padding: 22px 0 0; margin: 0; list-style: none; position: relative; }
+  .org > ul { padding-top: 0; }
+  .org li { display: flex; flex-direction: column; align-items: center; position: relative; padding: 22px 7px 0; }
+  .org > ul > li { padding-top: 0; }
+  .org li::before, .org li::after { content: ""; position: absolute; top: 0; right: 50%; width: 50%; height: 22px; border-top: 1.5px solid #35c8d8; }
+  .org li::after { right: auto; left: 50%; border-left: 1.5px solid #35c8d8; }
+  .org li:only-child::before, .org li:only-child::after { display: none; }
+  .org li:only-child { padding-top: 22px; }
+  .org > ul > li:only-child { padding-top: 0; }
+  .org li:first-child::before, .org li:last-child::after { border-top: 0 none; }
+  .org li:last-child::before { border-right: 1.5px solid #35c8d8; border-radius: 0 6px 0 0; }
+  .org li:first-child::after { border-radius: 6px 0 0 0; }
+  .org ul ul::before { content: ""; position: absolute; top: 0; left: 50%; width: 0; height: 22px; border-left: 1.5px solid #35c8d8; }
+  .org .nodebox { background: #12c5d5; color: #fff; border-radius: 4px; padding: 9px 14px; text-align: center; min-width: 100px; max-width: 200px; box-shadow: 0 2px 8px rgba(0,0,0,.3); border: 2.5px solid transparent; }
+  .org .nodebox .nm { font-weight: 700; font-size: 13.5px; line-height: 1.25; }
+  .org .nodebox .pc { font-size: 12.5px; opacity: .95; margin-top: 1px; }
+  .org .nodebox .tot { margin-top: 5px; font-size: 11.5px; background: rgba(255,255,255,.18); border-radius: 4px; padding: 2px 7px; display: inline-block; }
+  .org .nodebox.rootbox { background: #0ea5b7; padding: 12px 20px; }
+  .org .nodebox.bo { border-color: #ffd166; }
+  .org .nodebox.bo .tot { background: #ffd166; color: #1a2733; font-weight: 700; }
+  .orglegend { font-size: 12.5px; color: var(--muted); margin-top: 8px; }
+  /* ---- inline editing in the boxes ---- */
+  .org .nodebox { position: relative; }
+  .org .nodebox input.nm-in, .org .nodebox input.pc-in { background: transparent; border: none; border-bottom: 1px dashed rgba(255,255,255,.45); color: #fff; font-family: inherit; text-align: center; padding: 0 1px 1px; border-radius: 0; }
+  .org .nodebox input.nm-in { font-weight: 700; font-size: 13.5px; }
+  .org .nodebox input.pc-in { width: 5ch; font-weight: 600; font-size: 12.5px; }
+  .org .nodebox input:focus { outline: none; border-bottom: 1px solid #fff; background: rgba(255,255,255,.12); border-radius: 3px; }
+  .org .rootbox input.nm-in { font-size: 15px; }
+  .boxbtn { position: absolute; border: none; border-radius: 50%; color: #fff; cursor: pointer; padding: 0; display: flex; align-items: center; justify-content: center; font-size: 12px; line-height: 1; }
+  .delbtn { top: -9px; right: -9px; width: 19px; height: 19px; background: #e11d48; opacity: 0; transition: opacity .15s; }
+  .addbtn { bottom: -12px; left: 50%; transform: translateX(-50%); width: 22px; height: 22px; background: #0ea5b7; border: 2px solid #343b4e; font-size: 15px; opacity: .55; transition: opacity .15s; z-index: 2; }
+  .org .nodebox:hover .delbtn, .org .nodebox:hover .addbtn { opacity: 1; }
+  button.boxbtn:hover { color: #fff; filter: brightness(1.18); }
+  .rules { font-size: 13.5px; color: var(--muted); }
+  .rules b { color: var(--ink); }
+  .empty { color: var(--muted); font-style: italic; padding: 12px 0; }
+  @media (max-width: 640px) { .edges-head { display: none; } .edge { grid-template-columns: 1fr 90px; } .edge .t, .edge .x { grid-column: span 1; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Beneficial Ownership Calculator</h1>
+  <p class="sub">Въведи структурата ред по ред („X държи Y% от Z“) — калкулаторът смята ефективния дял на всяко лице през всички вериги, показва сметката и маркира beneficial owners. Директно = дели се; през верига = умножава се; няколко пътя = събират се.</p>
+
+  <div class="card" style="order:2">
+    <h2>2. Табличен изглед (същите данни)</h2>
+    <div class="rootrow">
+      <div class="grow">
+        <label>Компания, която анализираш (root)</label>
+        <input type="text" id="root" placeholder="напр. Robotix-GmbH">
+      </div>
+    </div>
+    <div class="edges-head"><div>Собственик (лице или компания)</div><div>Държи %</div><div>От компания</div><div></div></div>
+    <div id="edges"></div>
+    <div class="toolbar">
+      <button class="primary" onclick="addEdge()">+ Добави ред</button>
+    </div>
+    <p class="note" style="margin-top:10px">Ако едно име се появява и като собственик, и като притежавана компания — то се брои за компания. Всичко останало е физическо лице. Едно и също име на две места = едно и също лице.</p>
+  </div>
+
+  <div class="card" style="order:3">
+    <h2>3. Праг за beneficial owner</h2>
+    <div class="thres">
+      <label class="radio"><input type="radio" name="th" value="gte" checked onchange="recalc()"> ≥ 25% — US CDD („25 percent <b>or more</b>“ — точно 25% ВЛИЗА)</label>
+      <label class="radio"><input type="radio" name="th" value="gt" onchange="recalc()"> &gt; 25% — UK PSC („<b>more than</b> 25%“ — точно 25% НЕ влиза)</label>
+      <label class="radio">Праг: <input type="number" id="thval" value="25" min="0" max="100" step="0.5" onchange="recalc()" oninput="recalc()"> %</label>
+    </div>
+  </div>
+
+  <div class="card" style="order:4">
+    <h2>4. Резултат — физически лица</h2>
+    <div id="warnings"></div>
+    <div id="personsOut" class="empty">Въведи структура или зареди пример.</div>
+  </div>
+
+  <div class="card" style="order:5">
+    <h2>5. Междинни компании (ефективен дял в root)</h2>
+    <div id="companiesOut" class="empty">—</div>
+  </div>
+
+  <div class="card" style="order:1">
+    <h2>1. Структура — пиши направо в кутийките</h2>
+    <div class="toolbar" style="margin:0 0 14px">
+      <button onclick="loadPreset('robotix')">Пример: Robotix-GmbH</button>
+      <button onclick="loadPreset('tree')">Пример: Tree-AG</button>
+      <button onclick="clearAll()">Изчисти</button>
+    </div>
+    <div id="treeOut" class="orgwrap empty">—</div>
+    <div class="orglegend" id="orgLegend" style="display:none">Пишеш направо в кутийките — име и процент (Enter потвърждава). <b>+</b> под кутийка добавя собственик под нея (така лице става компания), <b>✕</b> маха връзката. Преименуване важи навсякъде, където се среща името (едно име = едно лице). <b>Σ</b> = общ ефективен дял в root; едно лице в няколко клона — Σ е сборът. <b style="color:#b45309">Златна рамка</b> = beneficial owner по избрания праг.</div>
+  </div>
+
+  <div class="card rules" style="order:6">
+    <h2>Правилата накратко</h2>
+    <b>Директно:</b> притежаваният % се взима директно (или акции ÷ общо акции × 100).&nbsp;
+    <b>Косвено (верига):</b> процентите по веригата се <b>умножават</b> (Marc 90% от Lux × Lux 20% от Robotix = 18%).&nbsp;
+    <b>Няколко пътя:</b> резултатите от всеки път се <b>събират</b> (20% + 18% = 38%).&nbsp;
+    <b>Праг:</b> внимавай дали въпросът казва „25% or more“ (US CDD) или „more than 25%“ (UK PSC) — има значение само при точно 25%.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+const PRESETS = {
+  robotix: { root: "Robotix-GmbH", edges: [
+    ["Marc", 20, "Robotix-GmbH"], ["Nina", 10, "Robotix-GmbH"], ["Tim", 20, "Robotix-GmbH"],
+    ["Susi", 20, "Robotix-GmbH"], ["Lux-GmbH", 20, "Robotix-GmbH"],
+    ["Marc", 90, "Lux-GmbH"], ["Achim", 10, "Lux-GmbH"]
+  ]},
+  tree: { root: "Tree-AG", edges: [
+    ["Susi", 6, "Tree-AG"], ["Plant UG", 30, "Tree-AG"], ["Flower GmbH", 20, "Tree-AG"], ["Green-GmbH", 44, "Tree-AG"],
+    ["Water UG", 90, "Plant UG"], ["Sun GmbH", 10, "Plant UG"],
+    ["Karl", 100, "Water UG"], ["Susi", 100, "Sun GmbH"],
+    ["Rose UG", 100, "Flower GmbH"], ["Susi", 60, "Rose UG"], ["Hans", 40, "Rose UG"],
+    ["Jan", 90, "Green-GmbH"], ["Fritz", 10, "Green-GmbH"]
+  ]}
+};
+
+function fmt(v) { return String(parseFloat(v.toFixed(4))); }
+
+function el(tag, attrs, html) {
+  const e = document.createElement(tag);
+  if (attrs) for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (html !== undefined) e.innerHTML = html;
+  return e;
+}
+
+function addEdge(owner, pct, target) {
+  const row = el("div", { class: "edge" });
+  row.innerHTML =
+    '<input type="text" class="o" placeholder="напр. Marc / Lux-GmbH" value="' + (owner || "") + '">' +
+    '<input type="number" class="p" placeholder="%" min="0" max="100" step="0.01" value="' + (pct !== undefined ? pct : "") + '">' +
+    '<input type="text" class="t" placeholder="напр. Robotix-GmbH" value="' + (target || "") + '">' +
+    '<button class="ghost" title="Премахни реда">✕</button>';
+  row.querySelector("button").onclick = function () { row.remove(); recalc(); };
+  row.querySelectorAll("input").forEach(i => { i.addEventListener("input", recalc); });
+  document.getElementById("edges").appendChild(row);
+}
+
+function readEdges() {
+  const out = [];
+  document.querySelectorAll("#edges .edge").forEach(row => {
+    const o = row.querySelector(".o").value.trim();
+    const p = parseFloat(row.querySelector(".p").value);
+    const t = row.querySelector(".t").value.trim();
+    if (o && t && !isNaN(p)) out.push({ owner: o, pct: p, target: t });
+  });
+  return out;
+}
+
+function loadPreset(name) {
+  clearAll(false);
+  const pr = PRESETS[name];
+  document.getElementById("root").value = pr.root;
+  pr.edges.forEach(e => addEdge(e[0], e[1], e[2]));
+  recalc();
+}
+
+function clearAll(reAdd) {
+  document.getElementById("edges").innerHTML = "";
+  document.getElementById("root").value = "";
+  if (reAdd !== false) { addEdge(); addEdge(); addEdge(); }
+  recalc();
+}
+
+/* ---- inline diagram editing helpers (rows in section 2 stay the source of truth) ---- */
+function rowsArr() { return Array.prototype.slice.call(document.querySelectorAll("#edges .edge")); }
+
+function renameEntity(oldN, newN) {
+  rowsArr().forEach(function (row) {
+    const o = row.querySelector(".o"), tt = row.querySelector(".t");
+    if (o.value.trim() === oldN) o.value = newN;
+    if (tt.value.trim() === oldN) tt.value = newN;
+  });
+  const rootI = document.getElementById("root");
+  if (rootI.value.trim() === oldN) rootI.value = newN;
+  recalc();
+}
+
+function findRow(owner, target) {
+  return rowsArr().find(function (row) {
+    return row.querySelector(".o").value.trim() === owner && row.querySelector(".t").value.trim() === target;
+  });
+}
+
+function setEdgePct(owner, target, val) {
+  const row = findRow(owner, target);
+  if (row) row.querySelector(".p").value = val;
+  recalc();
+}
+
+function removeEdgeRow(owner, target) {
+  const row = findRow(owner, target);
+  if (row) row.remove();
+  recalc();
+}
+
+let newCounter = 0;
+function addOwnerUnder(target) {
+  newCounter++;
+  const name = "Нов" + newCounter;
+  addEdge(name, 0, target);
+  recalc();
+  const inp = document.querySelector('#treeOut input.nm-in[data-o="' + name + '"]');
+  if (inp) { inp.focus(); inp.select(); }
+}
+
+function compute(root, edges) {
+  const owners = {};
+  edges.forEach(e => { (owners[e.target] = owners[e.target] || []).push(e); });
+  const companySet = new Set(Object.keys(owners));
+  const persons = {}, companiesEff = {}, warnings = [];
+
+  const usedEdges = new Set();
+  function dfs(node, product, chain, mathParts, stack) {
+    const list = owners[node] || [];
+    for (const e of list) {
+      usedEdges.add(e);
+      const p = product * (e.pct / 100);
+      const newChain = [e.owner].concat(chain);
+      const newMath = mathParts.concat([e.pct]);
+      if (companySet.has(e.owner)) {
+        companiesEff[e.owner] = (companiesEff[e.owner] || 0) + p * 100;
+        if (stack.indexOf(e.owner) !== -1) { warnings.push("Цикъл в структурата през „" + e.owner + "“ — провери данните."); continue; }
+        if (stack.length > 15) { warnings.push("Твърде дълбока структура — провери данните."); continue; }
+        dfs(e.owner, p, newChain, newMath, stack.concat([e.owner]));
+      } else {
+        const person = persons[e.owner] = persons[e.owner] || { total: 0, paths: [] };
+        person.total += p * 100;
+        const rev = newMath.slice().reverse();
+        const math = rev.length > 1
+          ? rev.map(x => x + "%").join(" × ") + " = " + fmt(p * 100) + "%"
+          : fmt(p * 100) + "% (директно)";
+        person.paths.push({ chain: newChain.join(" → "), math });
+      }
+    }
+  }
+  dfs(root, 1, [root], [], [root]);
+
+  const allocation = {};
+  Object.keys(owners).forEach(t => { allocation[t] = owners[t].reduce((s, e) => s + e.pct, 0); });
+  return { persons, companiesEff, warnings, allocation, owners, usedEdges };
+}
+
+function thState() {
+  const mode = document.querySelector('input[name="th"]:checked').value;
+  const th = parseFloat(document.getElementById("thval").value) || 25;
+  const label = th === 25 ? (mode === "gte" ? "25% or more" : "more than 25%") : (mode === "gte" ? th + "% or more" : "more than " + th + "%");
+  return { mode, th, label };
+}
+
+function isBO(total, t) {
+  const eps = 1e-9;
+  if (Math.abs(total - t.th) < eps) return t.mode === "gte";
+  return total > t.th;
+}
+
+function copySentence(btn, text) {
+  const done = () => { const old = btn.textContent; btn.textContent = "Копирано ✓"; setTimeout(() => { btn.textContent = old; }, 1400); };
+  if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done, done); }
+  else { const ta = document.createElement("textarea"); ta.value = text; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch (e) {} document.body.removeChild(ta); done(); }
+}
+
+function recalc() {
+  const root = document.getElementById("root").value.trim();
+  const edges = readEdges();
+  const wOut = document.getElementById("warnings");
+  const pOut = document.getElementById("personsOut");
+  const cOut = document.getElementById("companiesOut");
+  const tOut = document.getElementById("treeOut");
+  wOut.innerHTML = "";
+
+  if (!root) {
+    pOut.className = "empty"; pOut.textContent = "Зареди пример или създай структура от диаграмата горе.";
+    cOut.className = "empty"; cOut.textContent = "—";
+    document.getElementById("orgLegend").style.display = "none";
+    tOut.className = "orgwrap";
+    tOut.innerHTML = "";
+    const starter = el("div", { class: "org", style: "padding:32px 24px; text-align:center; width:100%;" });
+    starter.appendChild(el("div", { style: "color:#cfd6e4; margin-bottom:10px; font-size:14px;" }, "Как се казва компанията, която анализираш?"));
+    const sIn = el("input", { type: "text", placeholder: "напр. Robotix-GmbH", style: "max-width:280px; display:inline-block; margin-right:8px;" });
+    const sBtn = el("button", { class: "primary" }, "Създай структурата");
+    const go = function () { const v = sIn.value.trim(); if (!v) return; document.getElementById("root").value = v; recalc(); };
+    sBtn.onclick = go;
+    sIn.addEventListener("keydown", function (ev) { if (ev.key === "Enter") go(); });
+    starter.appendChild(sIn); starter.appendChild(sBtn);
+    tOut.appendChild(starter);
+    return;
+  }
+  const t = thState();
+  const res = compute(root, edges);
+
+  const warn = res.warnings.slice();
+  Object.keys(res.allocation).forEach(co => {
+    const a = res.allocation[co];
+    if (Math.abs(a - 100) > 1e-9) warn.push("Разпределени дялове в „" + co + "“: " + fmt(a) + "% (" + fmt(100 - a) + "% не са посочени в структурата).");
+  });
+  if (edges.length && !res.owners[root]) warn.push("Няма нито един ред „... от " + root + "“ — провери името на root компанията (трябва да съвпада точно).");
+  edges.filter(e => !res.usedEdges.has(e)).slice(0, 6).forEach(e => warn.push("Ред извън структурата: „" + e.owner + " → " + e.target + "“ — не се достига от " + root + "."));
+  warn.forEach(w => wOut.appendChild(el("div", { class: "warnbox" }, w)));
+
+  const names = Object.keys(res.persons).sort((a, b) => res.persons[b].total - res.persons[a].total);
+  if (!names.length) {
+    pOut.className = "empty"; pOut.textContent = edges.length ? "Няма физически лица в структурата (или имената не съвпадат)." : "Добави собственици с бутона „+“ под кутийката на " + root + " в диаграмата.";
+  } else {
+    pOut.className = "";
+    const tbl = el("table");
+    tbl.innerHTML = "<thead><tr><th>Лице</th><th class='num'>Ефективен дял</th><th>Сметката (пътища)</th><th>Статус</th></tr></thead>";
+    const tb = el("tbody");
+    names.forEach(name => {
+      const p = res.persons[name];
+      const bo = isBO(p.total, t);
+      const edgeCase = Math.abs(p.total - t.th) < 0.005;
+      const sentence = name + " directly and indirectly holds " + fmt(p.total) + "% of " + root + " and " + (bo ? "is" : "is not") + " a beneficial owner (" + t.label + ").";
+      const tr = el("tr");
+      tr.appendChild(el("td", null, "<b>" + name + "</b>"));
+      tr.appendChild(el("td", { class: "num" }, "<span class='total'>" + fmt(p.total) + "%</span>"));
+      const paths = el("td", { class: "paths" });
+      p.paths.forEach(x => paths.appendChild(el("div", null, x.chain + ": <b>" + x.math + "</b>")));
+      if (p.paths.length > 1) paths.appendChild(el("div", null, "Сума: <b>" + p.paths.map(x => { const m = x.math.match(/([\d.]+)%(?!.*=)/) ; const last = x.math.indexOf("=") >= 0 ? x.math.split("= ")[1] : x.math.split("%")[0] + "%"; return last; }).join(" + ") + " = " + fmt(p.total) + "%</b>"));
+      tr.appendChild(paths);
+      const st = el("td");
+      st.appendChild(el("span", { class: "badge " + (bo ? "bo" : "nbo") }, bo ? "BENEFICIAL OWNER" : "под прага"));
+      if (edgeCase) st.appendChild(el("div", null, "<span class='badge edge-case'>граничен случай — провери формулировката на прага!</span>"));
+      const btn = el("button", { class: "copybtn" }, "Копирай EN изречение");
+      btn.onclick = function () { copySentence(btn, sentence); };
+      st.appendChild(el("div"));
+      st.appendChild(btn);
+      tr.appendChild(st);
+      tb.appendChild(tr);
+    });
+    tbl.appendChild(tb);
+    pOut.innerHTML = ""; pOut.appendChild(tbl);
+  }
+
+  const coNames = Object.keys(res.companiesEff).sort((a, b) => res.companiesEff[b] - res.companiesEff[a]);
+  if (!coNames.length) { cOut.className = "empty"; cOut.textContent = "Няма междинни компании."; }
+  else {
+    cOut.className = "";
+    const ct = el("table");
+    ct.innerHTML = "<thead><tr><th>Компания</th><th class='num'>Ефективен дял в " + root + "</th></tr></thead>";
+    const ctb = el("tbody");
+    coNames.forEach(n => {
+      const tr = el("tr");
+      tr.appendChild(el("td", null, n));
+      tr.appendChild(el("td", { class: "num" }, "<b>" + fmt(res.companiesEff[n]) + "%</b>"));
+      ctb.appendChild(tr);
+    });
+    ct.appendChild(ctb);
+    cOut.innerHTML = ""; cOut.appendChild(ct);
+  }
+
+  tOut.className = "orgwrap";
+  tOut.innerHTML = "";
+  document.getElementById("orgLegend").style.display = "";
+
+  function mkNameInput(curName, isRoot) {
+    const i = el("input", { type: "text", class: "nm-in", "data-o": curName });
+    i.value = curName;
+    const fit = function () { i.style.width = Math.max(isRoot ? 8 : 5, i.value.length + 1) + "ch"; };
+    fit();
+    i.addEventListener("input", fit);
+    i.addEventListener("keydown", function (ev) { if (ev.key === "Enter") i.blur(); });
+    i.addEventListener("blur", function () {
+      const nv = i.value.trim();
+      if (!nv) { i.value = curName; fit(); return; }
+      if (nv !== curName) renameEntity(curName, nv);
+    });
+    return i;
+  }
+
+  function mkPctInput(e) {
+    const i = el("input", { type: "text", class: "pc-in", "data-o": e.owner, "data-t": e.target });
+    i.value = fmt(e.pct);
+    i.addEventListener("keydown", function (ev) { if (ev.key === "Enter") i.blur(); });
+    i.addEventListener("blur", function () {
+      const v = parseFloat(i.value.replace(",", "."));
+      if (isNaN(v) || v < 0 || v > 100) { i.value = fmt(e.pct); return; }
+      if (Math.abs(v - e.pct) > 1e-12) setEdgePct(e.owner, e.target, v);
+    });
+    return i;
+  }
+
+  function nodeBox(e) {
+    const isCo = !!res.owners[e.owner];
+    const p = res.persons[e.owner];
+    const bo = (!isCo && p) ? isBO(p.total, t) : false;
+    const box = el("div", { class: "nodebox" + (bo ? " bo" : "") });
+    const nmRow = el("div", { class: "nm" });
+    nmRow.appendChild(mkNameInput(e.owner, false));
+    box.appendChild(nmRow);
+    const pcRow = el("div", { class: "pc" });
+    pcRow.appendChild(document.createTextNode("държи "));
+    pcRow.appendChild(mkPctInput(e));
+    pcRow.appendChild(document.createTextNode("%"));
+    box.appendChild(pcRow);
+    if (isCo) {
+      if (res.companiesEff[e.owner] !== undefined) box.appendChild(el("div", { class: "tot" }, "Σ " + fmt(res.companiesEff[e.owner]) + "% в " + root));
+    } else if (p) {
+      box.appendChild(el("div", { class: "tot" }, "Σ " + fmt(p.total) + "%" + (bo ? " · BO" : "")));
+    }
+    const del = el("button", { class: "boxbtn delbtn", title: "Премахни връзката", type: "button" }, "✕");
+    del.onclick = function () { removeEdgeRow(e.owner, e.target); };
+    const add = el("button", { class: "boxbtn addbtn", title: "Добави собственик под " + e.owner, type: "button" }, "+");
+    add.onclick = function () { addOwnerUnder(e.owner); };
+    box.appendChild(del);
+    box.appendChild(add);
+    return box;
+  }
+
+  function branch(node, stack) {
+    const list = res.owners[node] || [];
+    if (!list.length) return null;
+    const ul = el("ul");
+    list.forEach(e => {
+      const li = el("li");
+      li.appendChild(nodeBox(e));
+      const isCo = !!res.owners[e.owner];
+      if (isCo && stack.indexOf(e.owner) === -1 && stack.length < 15) {
+        const sub = branch(e.owner, stack.concat([e.owner]));
+        if (sub) li.appendChild(sub);
+      }
+      ul.appendChild(li);
+    });
+    return ul;
+  }
+
+  const org = el("div", { class: "org" });
+  const rootUl = el("ul");
+  const rootLi = el("li");
+  const rootBox = el("div", { class: "nodebox rootbox" });
+  const rootNm = el("div", { class: "nm" });
+  rootNm.appendChild(mkNameInput(root, true));
+  rootBox.appendChild(rootNm);
+  const rootAdd = el("button", { class: "boxbtn addbtn", title: "Добави собственик под " + root, type: "button" }, "+");
+  rootAdd.onclick = function () { addOwnerUnder(root); };
+  rootBox.appendChild(rootAdd);
+  rootLi.appendChild(rootBox);
+  const rb = branch(root, [root]);
+  if (rb) rootLi.appendChild(rb);
+  rootUl.appendChild(rootLi);
+  org.appendChild(rootUl);
+  tOut.appendChild(org);
+}
+
+clearAll();
+</script>
+<!-- Кредит към автора -->
+<style>
+.saitora-credit{position:fixed;right:12px;bottom:10px;z-index:2147483000;
+font:12px/1.4 -apple-system,"Segoe UI",Roboto,Arial,sans-serif;letter-spacing:.01em;
+color:rgba(244,239,228,.55);background:rgba(17,16,14,.62);backdrop-filter:blur(6px);
+border:1px solid rgba(244,239,228,.14);border-radius:999px;padding:6px 13px;
+pointer-events:none;user-select:none}
+.saitora-credit a{pointer-events:auto;color:rgba(216,182,140,.95);text-decoration:none;
+font-weight:600;border-bottom:1px solid rgba(216,182,140,.35)}
+.saitora-credit a:hover{color:#e8ddcc;border-bottom-color:#e8ddcc}
+@media(max-width:520px){.saitora-credit{right:8px;bottom:8px;font-size:11px;padding:5px 10px}}
+@media print{.saitora-credit{display:none}}
+</style>
+<div class="saitora-credit">Изработено от Николай Неделчев ·
+<a href="https://saitora.tech" target="_blank" rel="noopener">saitora.tech</a></div>
+
+</body>
+</html>

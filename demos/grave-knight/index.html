@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#080a13">
+  <title>GRAVE KNIGHT</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell">
+    <header class="hud" aria-label="Game status">
+      <div class="brand">GRAVE KNIGHT</div>
+      <div class="hud-item"><span>Score</span><strong id="score">000000</strong></div>
+      <div class="hud-item lives"><span>Lives</span><strong id="lives" aria-label="3 lives"></strong></div>
+      <div class="hud-item weapon"><span>Weapon</span><strong id="weapon">Spear</strong><small id="weaponDetail">Long-range projectile</small><i id="amuletIcon" class="amulet-icon" hidden aria-label="Cinderwind Amulet active"></i></div>
+      <div class="hud-item level"><span>Level</span><strong id="levelNumber">I / XV</strong></div>
+      <div class="hud-actions">
+        <button type="button" class="hud-button" id="soundButton" aria-label="Toggle sound">Sound: On</button>
+        <button type="button" class="hud-button" id="fullscreenButton" aria-label="Toggle fullscreen" hidden>Full<br>Screen</button>
+        <button type="button" class="hud-button pause-button" id="pauseButton" aria-label="Pause game">Pause</button>
+      </div>
+    </header>
+
+    <pre class="audio-debug" id="audioDebugPanel" hidden></pre>
+    <pre class="audio-debug campaign-debug" id="campaignDebugPanel" hidden></pre>
+
+    <section class="stage" id="stage" aria-label="Grave Knight game canvas">
+      <canvas id="gameCanvas" width="960" height="540" tabindex="0"></canvas>
+      <div class="weapon-toast" id="weaponToast" aria-live="polite"></div>
+      <div class="boss-intro" id="bossIntroOverlay" aria-hidden="true">
+        <div class="boss-intro-mist" aria-hidden="true"></div>
+        <div class="boss-dialogue-frame">
+          <h2 id="bossIntroName">VELKO</h2>
+          <p id="bossIntroDialogue"></p>
+        </div>
+      </div>
+      <div class="velko-subtitle" id="velkoSubtitle" aria-hidden="true">
+        <strong id="bossSubtitleSpeaker">VELKO</strong>
+        <p id="velkoSubtitleText"></p>
+      </div>
+      <div class="overlay title-overlay" id="titleOverlay">
+        <div class="panel">
+          <h2>GRAVE KNIGHT</h2>
+          <p class="title-tagline">One knight against the hungry dark.</p>
+          <div class="overlay-actions">
+            <button type="button" id="startButton">Begin</button>
+            <button type="button" id="continueButton" class="secondary" hidden>Continue</button>
+          </div>
+          <p class="title-controls">A / D move &middot; W or Space jump &middot; J or X attack<br>Touch controls appear on mobile</p>
+        </div>
+      </div>
+      <div class="overlay" id="pauseOverlay">
+        <div class="panel">
+          <h2>PAUSED</h2>
+          <div class="overlay-actions">
+            <button type="button" id="resumeButton">Resume</button>
+            <button type="button" id="restartLevelButton" class="secondary">Restart Level</button>
+            <button type="button" data-back-title class="secondary">Back to Title</button>
+          </div>
+        </div>
+      </div>
+      <div class="overlay" id="endOverlay">
+        <div class="panel">
+          <h2 id="endTitle">GAME OVER</h2>
+          <p id="endMessage">The cemetery claims another knight</p>
+          <p class="score-line">Score <strong id="endScore">000000</strong></p>
+          <div class="completion-list" id="completionList" hidden></div>
+          <div class="overlay-actions">
+            <button type="button" id="nextLevelButton" hidden>Next Level</button>
+            <button type="button" id="restartButton">Try Again</button>
+            <button type="button" data-back-title class="secondary">Back to Title</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="touch-controls" aria-label="Touch controls">
+      <div class="move-controls">
+        <button type="button" class="touch-button round" data-action="left" aria-label="Move left" aria-pressed="false">◀</button>
+        <button type="button" class="touch-button round" data-action="right" aria-label="Move right" aria-pressed="false">▶</button>
+      </div>
+      <div class="action-controls">
+        <button type="button" class="touch-button jump" data-action="jump" aria-label="Jump" aria-pressed="false">Jump</button>
+        <button type="button" class="touch-button attack" data-action="attack" aria-label="Attack" aria-pressed="false">Attack</button>
+      </div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+<!-- Кредит към автора -->
+<style>
+.saitora-credit{position:fixed;right:12px;bottom:10px;z-index:2147483000;
+font:12px/1.4 -apple-system,"Segoe UI",Roboto,Arial,sans-serif;letter-spacing:.01em;
+color:rgba(244,239,228,.55);background:rgba(17,16,14,.62);backdrop-filter:blur(6px);
+border:1px solid rgba(244,239,228,.14);border-radius:999px;padding:6px 13px;
+pointer-events:none;user-select:none}
+.saitora-credit a{pointer-events:auto;color:rgba(216,182,140,.95);text-decoration:none;
+font-weight:600;border-bottom:1px solid rgba(216,182,140,.35)}
+.saitora-credit a:hover{color:#e8ddcc;border-bottom-color:#e8ddcc}
+@media(max-width:520px){.saitora-credit{right:8px;bottom:8px;font-size:11px;padding:5px 10px}}
+@media print{.saitora-credit{display:none}}
+</style>
+<div class="saitora-credit">Изработено от Николай Неделчев ·
+<a href="https://saitora.tech" target="_blank" rel="noopener">saitora.tech</a></div>
+
+</body>
+</html>
