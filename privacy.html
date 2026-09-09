@@ -5,6 +5,9 @@
 <title>Политика за поверителност · SAITORA</title>
 <meta name="description" content="Как SAITORA обработва лични данни. Сайтът не използва бисквитки, аналитика или външни услуги.">
 <link rel="canonical" href="https://nedelchevweb.com/privacy.html">
+<link rel="alternate" hreflang="bg" href="https://nedelchevweb.com/privacy.html">
+<link rel="alternate" hreflang="en" href="https://nedelchevweb.com/privacy.en.html">
+<link rel="alternate" hreflang="de" href="https://nedelchevweb.com/privacy.de.html">
 <meta name="theme-color" content="#11100e">
 <link rel="stylesheet" href="assets/css/style.css">
 <style>
@@ -43,15 +46,23 @@ th{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08
 .legal-foot a{color:var(--copper-soft)}
 @media(max-width:640px){table,thead,tbody,tr,th,td{display:block}
   th{border:0;padding-bottom:2px}td{border-bottom:1px solid var(--line-dark);padding-top:2px}}
+
+.legal-langs{display:flex;gap:4px}
+.legal-langs a{padding:5px 10px;border-radius:4px;font:600 12px/1 var(--body);
+  letter-spacing:.08em;color:var(--muted);text-decoration:none}
+.legal-langs a:hover{color:var(--ivory)}
+.legal-langs a[aria-current="page"]{color:var(--copper-soft);background:rgba(184,135,93,.14)}
 </style>
 </head><body>
 <div class="legal-shell">
   <div class="legal-top">
     <a class="legal-brand" href="index.html">SAITORA</a>
-    <a href="index.html">← Обратно към сайта</a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <nav class="legal-langs" aria-label="Език"><a href="privacy.html" aria-current="page">БГ</a><a href="privacy.en.html">EN</a><a href="privacy.de.html">DE</a></nav>
+      <a href="index.html">← Обратно към сайта</a>
+    </div>
   </div>
-  
-<h1>Политика за поверителност</h1>
+  <h1>Политика за поверителност</h1>
 <p class="legal-lede">Самият сайт не използва бисквитки и не събира статистика. Едно от
 демонстрационните приложения обаче ползва външна услуга - това е описано отделно по-долу.
 Документът обяснява какво се обработва и при какви условия.</p>
@@ -184,13 +195,9 @@ th{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08
 <h2>12. Промени</h2>
 <p>При промяна в начина на работа този документ се актуализира. Съществените промени
 се обявяват на началната страница.</p>
-
   <div class="legal-foot">
-    <p>Въпроси по този документ:
-    <a href="mailto:nikolay@nedelchevweb.com">nikolay@nedelchevweb.com</a></p>
-    <p><a href="privacy.html">Политика за поверителност</a> ·
-       <a href="terms.html">Общи условия</a> ·
-       <a href="index.html">Начало</a></p>
+    <p>Въпроси по този документ: <a href="mailto:nikolay@nedelchevweb.com">nikolay@nedelchevweb.com</a></p>
+    <p><a href="privacy.html">Политика за поверителност</a> · <a href="terms.html">Общи условия</a> · <a href="index.html">Начало</a></p>
   </div>
 </div>
 </body></html>

@@ -2479,6 +2479,15 @@
     }
   }
 
+
+  function syncLegalLinks(language) {
+    const suffix = language === "bg" ? "" : "." + language;
+    document.querySelectorAll('a[href^="privacy"], a[href^="terms"]').forEach((a) => {
+      const base = a.getAttribute("href").split(".")[0];
+      if (base === "privacy" || base === "terms") a.setAttribute("href", base + suffix + ".html");
+    });
+  }
+
   function initShotLightbox() {
     const shots = Array.from(document.querySelectorAll(".project-shot"));
     if (!shots.length) return;
@@ -2784,6 +2793,7 @@
   applyTranslations(currentLanguage);
   initSolutionSwitcher();
   initShotLightbox();
+  syncLegalLinks(currentLanguage || "bg");
   initReveals();
   initActiveNavigation();
   initProjectIntakeFromUrl();

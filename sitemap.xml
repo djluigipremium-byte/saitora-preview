@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://nedelchevweb.com/</loc></url>
+  <url><loc>https://nedelchevweb.com/privacy.de.html</loc></url>
+  <url><loc>https://nedelchevweb.com/privacy.en.html</loc></url>
   <url><loc>https://nedelchevweb.com/privacy.html</loc></url>
+  <url><loc>https://nedelchevweb.com/terms.de.html</loc></url>
+  <url><loc>https://nedelchevweb.com/terms.en.html</loc></url>
   <url><loc>https://nedelchevweb.com/terms.html</loc></url>
   <url><loc>https://nedelchevweb.com/demos/automate.html</loc></url>
   <url><loc>https://nedelchevweb.com/demos/booking-os.html</loc></url>
