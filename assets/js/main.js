@@ -2587,7 +2587,7 @@
 
     const subject = getValue("projectIntake.email.subject");
     const bodyText = getProjectBriefSummary();
-    const mailto = `mailto:saitora.tech@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+    const mailto = `mailto:nikolay@nedelchevweb.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
       bodyText
     )}`;
     const link = document.createElement("a");
